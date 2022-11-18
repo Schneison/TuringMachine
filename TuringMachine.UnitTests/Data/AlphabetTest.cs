@@ -19,8 +19,6 @@ public class AlphabetTest
         });
         Assert.Multiple(() =>
         {
-	        Assert.That(alphabet.Accepts(SymbolA), Is.True);
-	        Assert.That(alphabet.Accepts(SymbolB), Is.False);
 	        Assert.That(alphabet.Contains(SymbolA), Is.True);
 	        Assert.That(alphabet.Contains(SymbolB), Is.False);
         });
@@ -41,8 +39,6 @@ public class AlphabetTest
         });
         Assert.Multiple(() =>
         {
-	        Assert.That(other.Accepts(SymbolB), Is.True);
-	        Assert.That(other.Accepts(SymbolA), Is.False);
 	        Assert.That(other.Contains(SymbolB), Is.True);
 	        Assert.That(other.Contains(SymbolA), Is.False);
         });
