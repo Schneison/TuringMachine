@@ -1,6 +1,4 @@
 ﻿namespace TuringMachine.Data;
 
-public record Design(int TapeCount)
-{
-	
+public record Design(int TapeCount) {
 }

@@ -1,6 +1,5 @@
 ﻿namespace TuringMachine.Data;
 
-public interface IPrintable
-{
+public interface IPrintable {
 	string ToPrint();
 }
