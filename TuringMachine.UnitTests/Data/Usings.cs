@@ -1,0 +1,1 @@
+﻿global using static TuringMachine.UnitTests.Data.MockUtils;
