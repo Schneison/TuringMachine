@@ -6,17 +6,43 @@ using System.Linq;
 
 namespace TuringMachine.Data;
 
-public record Alphabet(ImmutableHashSet<ISymbol> Characters) : IEnumerable<ISymbol>
+/**
+ * Defines set of symbols that can be read and written by the turing machine.
+ * Every TM has two alphabets, one defines the words that can be loaded onto the first
+ * tape at the start.
+ * The other one defines the symbols that can be written by the turing machine.
+ */
+public record Alphabet(ImmutableHashSet<ISymbol> Symbols) : IEnumerable<ISymbol>
 {
 	private const int Prime = 433494437;
 	public static readonly Alphabet Empty = CreateBuilder().Create();
 
-	public static Builder CreateBuilder() {
+	public static Builder CreateBuilder()
+	{
 		return new Builder();
 	}
 
+	public int Length => Symbols.Count;
 
-	public Builder ToBuilder() {
+	public bool Contains(ISymbol symbol)
+	{
+		return Symbols.Contains(symbol);
+	}
+
+	public bool Accepts(string text)
+	{
+		return (from character in text
+			where Symbols.Contains(SymbolManager.FromChar(character))
+			select character).Any();
+	}
+
+	public bool Accepts(ISymbol symbol)
+	{
+		return Symbols.Contains(symbol);
+	}
+
+	public Builder ToBuilder()
+	{
 		return new Builder(this);
 	}
 
@@ -27,42 +53,48 @@ public record Alphabet(ImmutableHashSet<ISymbol> Characters) : IEnumerable<ISymb
 
 	public IEnumerator<ISymbol> GetEnumerator()
 	{
-		return Characters.GetEnumerator();
+		return Symbols.GetEnumerator();
 	}
 
 	public virtual bool Equals(Alphabet? other)
 	{
 		if (ReferenceEquals(null, other)) return false;
 		if (ReferenceEquals(this, other)) return true;
-		return Characters.SetEquals(other.Characters);
+		return Symbols.SetEquals(other.Symbols);
 	}
 
 	public override int GetHashCode()
 	{
-		return Characters.Aggregate(Prime, HashCode.Combine);
+		return Symbols.Aggregate(Prime, HashCode.Combine);
 	}
 
-	public sealed class Builder {
+	public sealed class Builder
+	{
 		private readonly ImmutableHashSet<ISymbol>.Builder _characters = ImmutableHashSet.CreateBuilder<ISymbol>();
 
-		internal Builder() {
+		internal Builder()
+		{
 		}
 
-		public Builder(Alphabet alphabet) {
-			this._characters.UnionWith(alphabet.Characters);
+		public Builder(Alphabet alphabet)
+		{
+			this._characters.UnionWith(alphabet.Symbols);
 		}
 
-		public Builder WithSymbol(ISymbol character) {
+		public Builder WithSymbol(ISymbol character)
+		{
 			_characters.Add(character);
 			return this;
 		}
 
-		public Builder WithoutSymbol(ISymbol character){
+		public Builder WithoutSymbol(ISymbol character)
+		{
 			_characters.Remove(character);
 			return this;
 		}
 
-		public Alphabet Create() {
+		public Alphabet Create()
+		{
 			return new Alphabet(_characters.ToImmutable());
 		}
 	}
