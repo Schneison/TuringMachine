@@ -13,6 +13,17 @@ namespace TuringMachine.Data;
 public class Mesh
 {
 	/// <summary>
+	/// Creates new builder for the given mesh.
+	/// <p/>
+	/// Only way to create a mesh instance.
+	/// </summary>
+	/// <returns>A fresh builder instance.</returns>
+	public static Builder CreateBuilder()
+	{
+		return new Builder();
+	}
+	
+	/// <summary>
 	/// All transitions of this mesh
 	/// </summary>
 	private readonly ImmutableDictionary<ITuple, Transition> _transitions;

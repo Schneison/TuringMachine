@@ -114,6 +114,18 @@ public record Transition(State From, State To, params Mutation[] Mutations)
 			consumer(builder);
 			return WithMutation(builder.Create());
 		}
+		
+		public Builder WithMutations(IEnumerable<Mutation> mutations)
+		{
+			this._mutations.AddRange(mutations);
+			return this;
+		}
+		
+		public Builder WithMutations(params Mutation[] mutations)
+		{
+			this._mutations.AddRange(mutations);
+			return this;
+		}
 
 		public Builder WithMutation(Mutation mutation)
 		{
