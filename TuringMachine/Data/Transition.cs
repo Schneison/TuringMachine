@@ -48,7 +48,7 @@ public record Transition(State From, State To, params Mutation[] Mutations) {
 
 	public override int GetHashCode() {
 		var hc = Mutations.Aggregate(Mutations.Length,
-			(current, val) => unchecked(current * 314159 + val.GetHashCode()));
+			(current, val) => current * 314159 + val.GetHashCode());
 		return HashCode.Combine(From, To, hc);
 	}
 

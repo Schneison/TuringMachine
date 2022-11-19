@@ -101,7 +101,7 @@ public class Mesh {
 		/// <param name="state">A state of a turing machine</param>
 		/// <returns>The builder instance for builder chaining.</returns>
 		public Builder FromState(State state) {
-			_state = _state;
+			_state = state;
 			return this;
 		}
 
