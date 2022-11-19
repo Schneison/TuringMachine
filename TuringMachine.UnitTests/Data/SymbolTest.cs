@@ -11,7 +11,7 @@ public class SymbolTest {
         Assert.Multiple(() =>
         {
             Assert.Catch<NotSupportedException>(() => SymbolNone.ToPrint());
-            Assert.That(SymbolNone, Is.True);
+            Assert.That(SymbolNone.IsNone(), Is.True);
         });
     }
 }
