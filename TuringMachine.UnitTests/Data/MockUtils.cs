@@ -59,4 +59,20 @@ internal static class MockUtils
 	{
 		return Transition.None;
 	}
+	
+	public static IEnumerable<ISymbol> GetAllPossibleSymbols()
+	{
+		for (var i = 0; i < 26; i++)
+		{
+			yield return SymbolManager.FromChar((char)('a' + i));
+			yield return SymbolManager.FromChar((char)('A' + i));
+		}
+		for (var i = 0; i < 10; i++)
+		{
+			yield return SymbolManager.FromChar((char)('0' + i));
+		}
+
+		yield return SymbolBlank;
+		yield return SymbolNone;
+	}
 }
