@@ -42,7 +42,6 @@ public class Character : ISymbol, IEquatable<Character> {
 	}
 
 	public override int GetHashCode() {
-		var a = _value.GetHashCode();
 		return _value.GetHashCode();
 	}
 

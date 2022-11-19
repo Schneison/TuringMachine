@@ -21,7 +21,6 @@ public class TapeTest {
 	[Test]
 	public void ApplyMutation() {
 		var trxLeft = MockMove(SymbolA, Direction.Left);
-		var trxNone = MockMove(Direction.None);
 		var trxRight = MockMove(Direction.Right);
 
 		var tape = Tape.CreateBlank();
@@ -42,8 +41,6 @@ public class TapeTest {
 			// Should fail because a is no blank
 			tape.ApplyMutation(trxRight);
 		});
-		// tape.ApplyTransaction(trxRight);
-		// Assert.That(tape, Has.Length.EqualTo(3));
 	}
 
 	[Test]
@@ -70,24 +67,18 @@ public class TapeTest {
 		Assert.That(tape.Head, Is.EqualTo(SymbolC));
 		Assert.That(tape.ToPrint(), Is.EqualTo("c"));
 	}
-	
+
 	[Test]
 	public void AlterInvalid() {
 		var tape = Tape.CreateBlank();
 		Assert.That(tape, Has.Length.EqualTo(1));
 		Assert.That(tape.Head, Is.EqualTo(SymbolBlank));
 
-		Assert.Catch<InvalidOperationException>(() => {
-			tape.Alter(SymbolNone, Direction.None);
-		});
-		
-		Assert.Catch<InvalidOperationException>(() => {
-			tape.Alter(SymbolA, 3);
-		});
-		
-		Assert.Catch<InvalidOperationException>(() => {
-			tape.Alter(SymbolA, -6);
-		});
+		Assert.Catch<InvalidOperationException>(() => { tape.Alter(SymbolNone, Direction.None); });
+
+		Assert.Catch<InvalidOperationException>(() => { tape.Alter(SymbolA, 3); });
+
+		Assert.Catch<InvalidOperationException>(() => { tape.Alter(SymbolA, -6); });
 	}
 
 	[Test]

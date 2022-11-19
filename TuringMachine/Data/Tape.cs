@@ -123,10 +123,10 @@ public class Tape : IPrintable {
 		SetSymbol(symbol);
 		MoveHead(direction);
 	}
-	
+
 	/// <summary>
-	/// Same as <see cref="Alter(ISymbol, Direction)"/> but moves the head to the given position instead
-	/// of moving it in a direction.
+	///     Same as <see cref="Alter(ISymbol, Direction)" /> but moves the head to the given position instead
+	///     of moving it in a direction.
 	/// </summary>
 	/// <param name="symbol">Specified symbol</param>
 	/// <param name="newPos">Specified position</param>

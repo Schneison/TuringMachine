@@ -14,6 +14,18 @@ namespace TuringMachine.Data;
 public record Transition(State From, State To, params Mutation[] Mutations) {
 	public static readonly Transition None = new(State.Empty, State.Empty, Mutation.None);
 
+	public virtual bool Equals(Transition? other) {
+		if (ReferenceEquals(null, other)) {
+			return false;
+		}
+
+		if (ReferenceEquals(this, other)) {
+			return true;
+		}
+
+		return From.Equals(other.From) && To.Equals(other.To) && Mutations.SequenceEqual(other.Mutations);
+	}
+
 	public static Transition FromSymbol(ISymbol input, State from, State to, ISymbol output, Direction dir) {
 		return new Transition(from, to, new SymbolMutation(input, output, dir));
 	}
@@ -34,20 +46,9 @@ public record Transition(State From, State To, params Mutation[] Mutations) {
 			.Select(comb => comb.ToTuple());
 	}
 
-	public virtual bool Equals(Transition? other) {
-		if (ReferenceEquals(null, other)) {
-			return false;
-		}
-
-		if (ReferenceEquals(this, other)) {
-			return true;
-		}
-
-		return From.Equals(other.From) && To.Equals(other.To) && Mutations.SequenceEqual(other.Mutations);
-	}
-
 	public override int GetHashCode() {
-		var hc = Mutations.Aggregate(Mutations.Length, (current, val) => unchecked(current * 314159 + val.GetHashCode()));
+		var hc = Mutations.Aggregate(Mutations.Length,
+			(current, val) => unchecked(current * 314159 + val.GetHashCode()));
 		return HashCode.Combine(From, To, hc);
 	}
 
@@ -68,9 +69,9 @@ public record Transition(State From, State To, params Mutation[] Mutations) {
 	}
 
 	public class Builder {
-		private State _from;
 		private readonly List<Mutation> _mutations = new();
 		private readonly State _to;
+		private State _from;
 
 		public Builder() {
 			_from = State.Empty;

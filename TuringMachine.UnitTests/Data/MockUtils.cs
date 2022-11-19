@@ -2,8 +2,7 @@
 
 namespace TuringMachine.UnitTests.Data;
 
-internal static class MockUtils
-{
+internal static class MockUtils {
 	public static readonly ISymbol SymbolA = SymbolManager.FromChar('a');
 	public static readonly ISymbol SymbolB = SymbolManager.FromChar('b');
 	public static readonly ISymbol SymbolC = SymbolManager.FromChar('c');
@@ -11,23 +10,19 @@ internal static class MockUtils
 	public static readonly ISymbol SymbolNone = SymbolManager.None;
 	public static readonly string Blank = SymbolBlank.ToPrint();
 
-	public static Mutation MockMove(Direction dir)
-	{
+	public static Mutation MockMove(Direction dir) {
 		return MockMove(SymbolManager.Blank, dir);
 	}
 
-	public static Mutation MockMove(ISymbol output, Direction dir)
-	{
+	public static Mutation MockMove(ISymbol output, Direction dir) {
 		return MockMove(SymbolManager.Blank, output, dir);
 	}
 
-	public static Mutation MockMove(ISymbol input, ISymbol output, Direction dir)
-	{
+	public static Mutation MockMove(ISymbol input, ISymbol output, Direction dir) {
 		return new SymbolMutation(input, output, dir);
 	}
 
-	public static Transition TrxBlank()
-	{
+	public static Transition TrxBlank() {
 		return Transition.FromSymbol(
 			SymbolManager.Blank,
 			State.Empty,
@@ -36,8 +31,7 @@ internal static class MockUtils
 			Direction.None);
 	}
 
-	public static Transition TrxFromPairs(params (ISymbol input, ISymbol output)[] mutationPairs)
-	{
+	public static Transition TrxFromPairs(params (ISymbol input, ISymbol output)[] mutationPairs) {
 		return Transition.CreateBuilder()
 			.WithMutations(
 				from pair in mutationPairs
@@ -46,8 +40,7 @@ internal static class MockUtils
 			.Create();
 	}
 
-	public static Transition TrxFrom(ISymbol input, ISymbol output)
-	{
+	public static Transition TrxFrom(ISymbol input, ISymbol output) {
 		return Transition.FromSymbol(
 			input,
 			State.Empty,
@@ -57,7 +50,7 @@ internal static class MockUtils
 	}
 
 	public static Transition TrxComplex() {
-			return Transition.CreateBuilder()
+		return Transition.CreateBuilder()
 			.WithMutations(
 				MockMove(SymbolA, SymbolB, Direction.Left),
 				MockMove(SymbolB, SymbolC, Direction.Right),
@@ -67,20 +60,17 @@ internal static class MockUtils
 			.Create();
 	}
 
-	public static Transition TrxNone()
-	{
+	public static Transition TrxNone() {
 		return Transition.None;
 	}
-	
-	public static IEnumerable<ISymbol> GetAllPossibleSymbols()
-	{
-		for (var i = 0; i < 26; i++)
-		{
+
+	public static IEnumerable<ISymbol> GetAllPossibleSymbols() {
+		for (var i = 0; i < 26; i++) {
 			yield return SymbolManager.FromChar((char)('a' + i));
 			yield return SymbolManager.FromChar((char)('A' + i));
 		}
-		for (var i = 0; i < 10; i++)
-		{
+
+		for (var i = 0; i < 10; i++) {
 			yield return SymbolManager.FromChar((char)('0' + i));
 		}
 

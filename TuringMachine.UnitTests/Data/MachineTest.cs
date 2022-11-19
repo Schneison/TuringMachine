@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using TuringMachine.Data;
+﻿using TuringMachine.Data;
 
 namespace TuringMachine.UnitTests.Data;
 

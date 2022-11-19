@@ -7,7 +7,7 @@ using DotNetGraph;
 using DotNetGraph.Extensions;
 using TuringMachine.Utils;
 
-namespace TuringMachine; 
+namespace TuringMachine;
 
 /// <summary>
 ///     Interaction logic for App.xaml
