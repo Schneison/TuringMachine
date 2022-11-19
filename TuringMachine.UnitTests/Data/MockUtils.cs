@@ -56,6 +56,17 @@ internal static class MockUtils
 			Direction.None);
 	}
 
+	public static Transition TrxComplex() {
+			return Transition.CreateBuilder()
+			.WithMutations(
+				MockMove(SymbolA, SymbolB, Direction.Left),
+				MockMove(SymbolB, SymbolC, Direction.Right),
+				MockMove(SymbolC, SymbolA, Direction.Left),
+				MockMove(SymbolBlank, SymbolBlank, Direction.Right)
+			)
+			.Create();
+	}
+
 	public static Transition TrxNone()
 	{
 		return Transition.None;

@@ -1,10 +1,27 @@
-﻿using TuringMachine.Data;
+﻿using System.Diagnostics.CodeAnalysis;
+using TuringMachine.Data;
 
 namespace TuringMachine.UnitTests.Data;
 
 [TestFixture]
 public class TransitionTest
 {
+	[Test]
+	[SuppressMessage("Assertion", "NUnit2010:Use EqualConstraint for better assertion messages in case of failure")]
+	public void BuilderAndEquality() {
+		var trx = TrxComplex();
+		var trxCopy = trx.ToBuilder().Create();
+		Assert.That(trxCopy, Is.EqualTo(trx));
+		Assert.That(trxCopy.GetHashCode(), Is.EqualTo(trx.GetHashCode()));
+		Assert.Multiple(() => {
+			// Check equality of Equals(object?)
+			Assert.That(trx.Equals(null), Is.False);
+			Assert.That(trx!.Equals(new object()), Is.False);
+			Assert.That(trx.Equals(trx), Is.True);
+			Assert.That(trx.Equals(trxCopy), Is.True);
+		});
+	}
+	
 	[Test]
 	public void SymbolInputComb()
 	{

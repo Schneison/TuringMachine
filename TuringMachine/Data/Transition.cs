@@ -18,25 +18,6 @@ public record Transition(State From, State To, params Mutation[] Mutations) {
 		return new Transition(from, to, new SymbolMutation(input, output, dir));
 	}
 
-	public static Transition FromSet(ISymbol input, State from, State to, ISymbol output, Direction dir) {
-		return new Transition(from, to, SetMutation.CreateBuilder()
-			.WithInputs(input)
-			.WithRep(output)
-			.WithDir(dir).Create());
-	}
-
-	public static Transition FromSet(IEnumerable<ISymbol> input, State from, State to, Direction dir) {
-		return new Transition(from, to, SetMutation.CreateBuilder()
-			.WithInputs(input)
-			.WithDir(dir).Create());
-	}
-
-	public static Transition FromSet(ISymbol[] input, State from, State to, Direction dir) {
-		return new Transition(from, to, SetMutation.CreateBuilder()
-			.WithInputs(input)
-			.WithDir(dir).Create());
-	}
-
 	public static Builder CreateBuilder() {
 		return new Builder();
 	}
@@ -51,6 +32,23 @@ public record Transition(State From, State To, params Mutation[] Mutations) {
 			select mutation.GetVariations()).ToArray();
 		return GetPermutations(variationArray, variationArray.Length)
 			.Select(comb => comb.ToTuple());
+	}
+
+	public virtual bool Equals(Transition? other) {
+		if (ReferenceEquals(null, other)) {
+			return false;
+		}
+
+		if (ReferenceEquals(this, other)) {
+			return true;
+		}
+
+		return From.Equals(other.From) && To.Equals(other.To) && Mutations.SequenceEqual(other.Mutations);
+	}
+
+	public override int GetHashCode() {
+		var hc = Mutations.Aggregate(Mutations.Length, (current, val) => unchecked(current * 314159 + val.GetHashCode()));
+		return HashCode.Combine(From, To, hc);
 	}
 
 	// https://stackoverflow.com/questions/1952153/what-is-the-best-way-to-find-all-combinations-of-items-in-an-array
