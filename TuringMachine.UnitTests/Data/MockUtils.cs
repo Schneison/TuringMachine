@@ -9,6 +9,7 @@ internal static class MockUtils
 	public static readonly ISymbol SymbolC = SymbolManager.FromChar('c');
 	public static readonly ISymbol SymbolBlank = SymbolManager.Blank;
 	public static readonly ISymbol SymbolNone = SymbolManager.None;
+	public static readonly string Blank = SymbolBlank.ToPrint();
 
 	public static Mutation MockMove(Direction dir)
 	{
