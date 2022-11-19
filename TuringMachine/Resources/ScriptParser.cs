@@ -62,7 +62,7 @@ public class ScriptParser {
 		var segments = ImmutableList.CreateBuilder<Segment>();
 		var current = ImmutableList.CreateBuilder<string>();
 		foreach (var line in lines) {
-			if (line == "") {
+			if (string.IsNullOrEmpty(line.Trim())) {
 				segments.Add(current.ToImmutable());
 				current.Clear();
 			}
