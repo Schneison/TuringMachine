@@ -67,8 +67,8 @@ public class Mesh {
 	/// </summary>
 	/// <param name="symbols">Input array</param>
 	/// <returns>Transition that contains the valid mutation for the equivalent symbol in the input array.</returns>
-	public Transition Find(ISymbol[] symbols) {
-		return Transition.None;
+	public Transition Find(ITuple symbols) {
+		return !Accepts(symbols) ? Transition.None : _transitions[symbols];
 	}
 
 	/// <summary>

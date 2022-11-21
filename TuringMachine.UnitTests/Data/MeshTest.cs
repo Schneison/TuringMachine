@@ -35,15 +35,22 @@ public class MeshTest {
 		var mesh = Mesh.CreateBuilder()
 			.WithTransition(TrxFrom(SymbolA, SymbolA)).Create();
 		Assert.Multiple(() => {
-			Assert.Catch<KeyNotFoundException>(() => { Assert.That(mesh[(SymbolA, SymbolA)], Is.Not.Null); });
+			Assert.Catch<KeyNotFoundException>(() => { Assert.That(Tuple.Create(SymbolA, SymbolA), Is.Not.Null); });
 			Assert.That(mesh[Tuple.Create(SymbolA)], Is.Not.Null);
 		});
 	}
 
 	[Test]
-	public void Find() {
-		var mesh = Mesh.CreateBuilder()
+	public void Find()
+    {
+        var mesh = Mesh.CreateBuilder()
 			.WithTransition(TrxFrom(SymbolA, SymbolA)).Create();
-		mesh.Find(Array.Empty<ISymbol>());
-	}
+		var valid = mesh.Find(Tuple.Create(SymbolA));
+		var invalid = mesh.Find(Tuple.Create(SymbolB));
+        Assert.Multiple(() =>
+        {
+            Assert.That(valid, Is.Not.EqualTo(Transition.None));
+            Assert.That(invalid, Is.EqualTo(Transition.None));
+        });
+    }
 }

@@ -6,7 +6,7 @@ namespace TuringMachine.UnitTests.Data;
 public class MachineTest {
 	[Test]
 	public void Test() {
-		var design = new Design(1);
+		var design = new Design(1, "");
 		var machine = new Machine(design);
 		machine.TryApplyTransition();
 	}

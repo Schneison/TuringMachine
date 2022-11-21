@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using TuringMachine.Resources;
 
@@ -14,8 +15,12 @@ public partial class App : Application {
 	/// <param name="e">Event args</param>
 	protected override void OnActivated(EventArgs e) {
 		base.OnActivated(e);
-		
-		var scriptGraph = ScriptParser.CreateFromPath("3_1_band.txt").Parse();
+
+		if (!File.Exists("2a.txt")) {
+			return;
+		}
+
+		var scriptGraph = ScriptParser.CreateFromPath("2a.txt").Parse();
 		var forge = new DotForge(scriptGraph);
 		forge.ToFile("myFile.dot");
 	}
