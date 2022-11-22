@@ -4,3 +4,16 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /.idea
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+*.coverage
+*.coveragexml
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# DotCover is a Code Coverage Tool
+*.dotCover

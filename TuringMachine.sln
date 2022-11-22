@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuringMachine", "TuringMachine\TuringMachine.csproj", "{D367259D-2445-46A4-8838-ADC0769D2EA6}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuringMachine", "TuringMachine\TuringMachine.csproj", "{D367259D-2445-46A4-8838-ADC0769D2EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuringMachine.UnitTests", "TuringMachine.UnitTests\TuringMachine.UnitTests.csproj", "{F3D195D3-1F12-4D4B-9FF1-C366053239B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuringMachine.UnitTests", "TuringMachine.UnitTests\TuringMachine.UnitTests.csproj", "{F3D195D3-1F12-4D4B-9FF1-C366053239B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurinMachine.Core", "TurinMachine.Core\TurinMachine.Core.csproj", "{50ED1C9B-82E4-4041-8210-E26EC75937D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +23,15 @@ Global
 		{F3D195D3-1F12-4D4B-9FF1-C366053239B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3D195D3-1F12-4D4B-9FF1-C366053239B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D195D3-1F12-4D4B-9FF1-C366053239B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50ED1C9B-82E4-4041-8210-E26EC75937D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50ED1C9B-82E4-4041-8210-E26EC75937D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50ED1C9B-82E4-4041-8210-E26EC75937D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50ED1C9B-82E4-4041-8210-E26EC75937D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5EC3D56-065C-49B5-A81C-BB0BAC5A9E2D}
 	EndGlobalSection
 EndGlobal

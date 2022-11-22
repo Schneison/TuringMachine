@@ -35,7 +35,7 @@ public class MeshTest {
 		var mesh = Mesh.CreateBuilder()
 			.WithTransition(TrxFrom(SymbolA, SymbolA)).Create();
 		Assert.Multiple(() => {
-			Assert.Catch<KeyNotFoundException>(() => { Assert.That(Tuple.Create(SymbolA, SymbolA), Is.Not.Null); });
+			Assert.Catch<KeyNotFoundException>(() => { Assert.That(mesh[Tuple.Create(SymbolA, SymbolA)], Is.Not.Null); });
 			Assert.That(mesh[Tuple.Create(SymbolA)], Is.Not.Null);
 		});
 	}
