@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TuringMachine.Model;
 
-namespace TuringMachine.ViewModel; 
+namespace TuringMachine.ViewModel;
 
 public class GraphViewModel : ObservableObject {
     public GraphViewModel() {

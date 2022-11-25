@@ -1,7 +1,6 @@
-﻿namespace TuringMachine.Data; 
+﻿namespace TuringMachine.Data;
 
 /// <summary>
-/// 
 /// </summary>
 public class Engine {
     private Machine _machine;

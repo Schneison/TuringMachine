@@ -1,5 +1,4 @@
-﻿namespace TuringMachine.Data; 
+﻿namespace TuringMachine.Data;
 
 public class History {
-    
 }

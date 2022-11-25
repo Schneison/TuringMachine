@@ -20,7 +20,7 @@ public class DragBehavior : Behavior<DependencyObject> {
     ///     Current position of the element.
     /// </summary>
     private Point _elementPos = new(-1, -1);
-    
+
     /// <summary>
     ///     Position of the mouse when the mouse button is pressed.
     /// </summary>
@@ -125,7 +125,7 @@ public class DragBehavior : Behavior<DependencyObject> {
 
         // make sure the mouse has moved since last time we were here
         // (the MouseMove is run in loop while the button is clicked, even if the mouse isn't moving)
-        if (!(movement.Length > 0)) {
+        if (movement.Length <= 0) {
             return;
         }
 

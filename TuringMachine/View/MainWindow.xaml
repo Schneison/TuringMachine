@@ -2,14 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:viewmodels="clr-namespace:TuringMachine.ViewModel" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:TuringMachine.ViewModel"
         xmlns:local="clr-namespace:TuringMachine.View"
         d:DataContext="{d:DesignInstance Type=viewmodels:WindowViewModel}"
         mc:Ignorable="d"
         Title="Turing Machine: Graph" Height="450" Width="800" Background="#FF9C9C9C">
     <Grid>
-        <ItemsControl  VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1" Grid.ColumnSpan="2">
+        <ItemsControl VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1"
+                      Grid.ColumnSpan="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -26,6 +27,6 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
-        <local:GraphView x:Name="GraphView" Margin="0,25,0,0"/>
+        <local:GraphView x:Name="GraphView" Margin="0,25,0,0" />
     </Grid>
 </Window>

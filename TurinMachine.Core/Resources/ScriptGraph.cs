@@ -13,13 +13,13 @@ public record Connection(string FromState, string ToState);
 /// <param name="StartState">Initial state</param>
 /// <param name="EndState">Final state</param>
 public record GraphHeader(string Name, string StartState, string EndState) {
-	public bool IsValid() {
-		return StartState.Length > 0 && EndState.Length > 0;
-	}
+    public bool IsValid() {
+        return StartState.Length > 0 && EndState.Length > 0;
+    }
 }
 
 public record ScriptGraph(
-	MultiDictionary<Connection, string> Connections,
-	bool MultiTape,
-	GraphHeader Header) {
+    MultiDictionary<Connection, string> Connections,
+    bool MultiTape,
+    GraphHeader Header) {
 }

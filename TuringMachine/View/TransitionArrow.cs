@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Media;
@@ -27,7 +26,7 @@ public class TransitionArrow : Shape {
     private readonly PropertyChangedEventHandler _changeHandler;
 
     public TransitionArrow() {
-        _changeHandler = (_, _) => { 
+        _changeHandler = (_, _) => {
             InvalidateVisual();
             InvalidateMeasure();
         };
@@ -64,6 +63,7 @@ public class TransitionArrow : Shape {
         if (element == null) {
             return Geometry.Empty;
         }
+
         var lineGroup = new GeometryGroup();
         var intersections = MathUtils.IntersectCircle(
             new Vector2(NodeElement.StateRadius, NodeElement.StateRadius),
@@ -77,7 +77,7 @@ public class TransitionArrow : Shape {
         var theta = p2.AngleInDegree(Vector2.One) + (element.AlternativeDirection ? 45 / 2 : -90);
         using (var ctx = geometry.Open()) {
             ctx.BeginFigure(p1.ToPoint(), false, false);
-            ctx.ArcTo(p2.ToPoint(), new Size(ArrowSelfRadius, ArrowSelfRadius), 
+            ctx.ArcTo(p2.ToPoint(), new Size(ArrowSelfRadius, ArrowSelfRadius),
                 0, true,
                 SweepDirection.Clockwise, true, true);
         }
@@ -114,7 +114,6 @@ public class TransitionArrow : Shape {
             StartPoint = p,
             IsClosed = true
         };
-
         var lPoint = new Point(p.X + ArrowHeadWidth, p.Y + ArrowHeadHeight);
         var rPoint = new Point(p.X - ArrowHeadWidth, p.Y + ArrowHeadHeight);
         var seg1 = new LineSegment {

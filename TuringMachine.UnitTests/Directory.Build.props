@@ -1,0 +1,9 @@
+﻿<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('.UnitTests'))">
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>lcov</CoverletOutputFormat>
+  </PropertyGroup>
+</Project>
