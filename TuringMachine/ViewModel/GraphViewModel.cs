@@ -1,64 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm;
+using System.Collections.ObjectModel;
+using System.Numerics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TuringMachine.Model;
 
-namespace TuringMachine.ViewModel
-{
-    public class GraphViewModel : ObservableObject
-    {
-        private RelayCommand AddNodeCommand { get; set; }
-        private RelayCommand RemoveNodeCommand { get; set; }
+namespace TuringMachine.ViewModel; 
 
-        public GraphViewModel()
-        {
-            AddNodeCommand = new RelayCommand(AddNode);
-            RemoveNodeCommand = new RelayCommand(RemoveNode);
-        }
+public class GraphViewModel : ObservableObject {
+    public GraphViewModel() {
+        AddNodeCommand = new RelayCommand(AddNode);
+        RemoveNodeCommand = new RelayCommand(RemoveNode);
+        Items.Add(new ConnectionElement((NodeElement)Items[0], (NodeElement)Items[1]));
+        Items.Add(new ConnectionElement((NodeElement)Items[1], (NodeElement)Items[2]));
+        Items.Add(new ConnectionElement((NodeElement)Items[2], (NodeElement)Items[0]));
+        Items.Add(new ConnectionElement((NodeElement)Items[0], (NodeElement)Items[0]));
+    }
 
-        private void AddNode()
-        {
-            throw new NotImplementedException();
-        }
+    private RelayCommand AddNodeCommand { get; }
+    private RelayCommand RemoveNodeCommand { get; }
 
-        private void RemoveNode()
-        {
-            throw new NotImplementedException();
-        }
+    public ObservableCollection<ObservableObject> Items { get; } = new() {
+        new NodeElement(new Vector2(50, 70), "q0", true, false),
+        new NodeElement(new Vector2(300, 170), "q1", false, true),
+        new NodeElement(new Vector2(200, 50), "q2", false, false)
+    };
 
-        public void AddNode(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+    private void AddNode() {
+        throw new NotImplementedException();
+    }
 
-        public void RemoveNode(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddEdge(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveEdge(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddEdge()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveEdge()
-        {
-            throw new NotImplementedException();
-        }
-
+    private void RemoveNode() {
+        throw new NotImplementedException();
     }
 }

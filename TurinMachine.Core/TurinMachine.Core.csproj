@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DotNetGraph" Version="2.7.0" />
+    <PackageReference Include="QuikGraph.Graphviz" Version="2.5.0" />
+  </ItemGroup>
+
 </Project>

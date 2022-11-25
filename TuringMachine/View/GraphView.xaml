@@ -4,15 +4,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TuringMachine.View"
+             xmlns:model="clr-namespace:TuringMachine.Model"
              xmlns:viewmodel="clr-namespace:TuringMachine.ViewModel" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:GraphViewModel}"
+             xmlns:behaviors="clr-namespace:TuringMachine.Behaviors"
+             d:DataContext="{d:DesignInstance  Type=viewmodel:GraphViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="500"
 >
-    <UserControl.DataContext>
-        <viewmodel:GraphViewModel/>
-    </UserControl.DataContext>
-    <Grid>
-            
+    <Grid Margin="10">
+        <ItemsControl  ItemsSource="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type model:ConnectionElement}">
+                    <DataTemplate.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="13"/>
+
+                        </Style>
+                    </DataTemplate.Resources>
+                    <Canvas behaviors:DragBehavior.DropHandler="{Binding}" Panel.ZIndex="0">
+                        <TextBlock Text="a | b | 0" Margin="{Binding TextOffset}"/>
+                        <local:TransitionArrow Stroke="Black" Fill="Black" Transition="{Binding }"/>
+                    </Canvas>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type model:NodeElement}">
+                    <DataTemplate.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="18"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        
+                        <Style x:Key="FinalState" TargetType="Ellipse">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsFinal}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataTemplate.Resources>
+                    <Grid behaviors:DragBehavior.DropHandler="{Binding}"
+                          Canvas.Left="{Binding Path=PositionX}"
+                          Canvas.Top="{Binding Path=PositionY}" Panel.ZIndex="1">
+                        <Ellipse Fill="Silver" Width="50" Height="50" />
+                        <Ellipse Style="{StaticResource FinalState}" Stroke="DimGray" StrokeThickness="1" Width="44" Height="44"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Path=PositionY}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
     </Grid>
 </UserControl>

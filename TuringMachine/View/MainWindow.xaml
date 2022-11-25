@@ -4,32 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:viewmodels="clr-namespace:TuringMachine.ViewModel" 
+        xmlns:local="clr-namespace:TuringMachine.View"
         d:DataContext="{d:DesignInstance Type=viewmodels:WindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Turing Machine: Graph" Height="450" Width="800" Background="#FF9C9C9C">
     <Grid>
-        <ItemsControl Height="20" VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1">
+        <ItemsControl  VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1" Grid.ColumnSpan="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-
                     <StackPanel Orientation="Horizontal" />
-
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.Items>
                 <Button Content="File" />
                 <Button Content="Edit" />
             </ItemsControl.Items>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Padding" Value="15,2,15,2" />
+                    <Setter Property="Margin" Value="0,0,10,0" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
         </ItemsControl>
-        <Canvas x:Name="GraphView" Margin="0,52,0,0">
-            <Rectangle>
-
-            </Rectangle>
-            <Ellipse   Width="50" Height="50" Fill="Blue" Canvas.Left="375" Canvas.Top="192" />
-            <Line X1="10" Y1="10" X2="50" Y2="50" Stroke="Black" StrokeThickness="2" StrokeEndLineCap="Triangle"/>
-            
-
-
-        </Canvas>
+        <local:GraphView x:Name="GraphView" Margin="0,25,0,0"/>
     </Grid>
 </Window>

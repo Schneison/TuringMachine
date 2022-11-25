@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TuringMachine\TuringMachine.csproj" />
+        <ProjectReference Include="..\TurinMachine.Core\TurinMachine.Core.csproj" />
     </ItemGroup>
 
 </Project>
