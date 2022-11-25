@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace TuringMachine.ViewModel; 
+namespace TuringMachine.ViewModel;
 
 public class WindowViewModel : ObservableObject {
 }

@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace TuringMachine.Model; 
+namespace TuringMachine.Model;
 
 /// <summary>
-///     Element positioned on the graph view
+///  Element positioned on the graph view
 /// </summary>
 public abstract class GraphElement : ObservableObject {
 }

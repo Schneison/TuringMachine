@@ -3,9 +3,9 @@
 /// <summary>
 /// </summary>
 public class Engine {
-    private Machine _machine;
+	private Machine _machine;
 
-    public void Run(Design design) {
-        _machine = new Machine(design);
-    }
+	public void Run(Design design) {
+		_machine = new Machine(design);
+	}
 }

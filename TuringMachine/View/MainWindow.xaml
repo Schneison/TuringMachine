@@ -8,25 +8,25 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:WindowViewModel}"
         mc:Ignorable="d"
         Title="Turing Machine: Graph" Height="450" Width="800" Background="#FF9C9C9C">
-    <Grid>
-        <ItemsControl VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1"
-                      Grid.ColumnSpan="2">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.Items>
-                <Button Content="File" />
-                <Button Content="Edit" />
-            </ItemsControl.Items>
-            <ItemsControl.ItemContainerStyle>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Padding" Value="15,2,15,2" />
-                    <Setter Property="Margin" Value="0,0,10,0" />
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-        </ItemsControl>
-        <local:GraphView x:Name="GraphView" Margin="0,25,0,0" />
-    </Grid>
+	<Grid>
+		<ItemsControl VerticalAlignment="Top" Background="#FFCACACA" BorderBrush="#FFA2A2A2" BorderThickness="1"
+		              Grid.ColumnSpan="2">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.Items>
+				<Button Content="File" />
+				<Button Content="Edit" />
+			</ItemsControl.Items>
+			<ItemsControl.ItemContainerStyle>
+				<Style TargetType="{x:Type Button}">
+					<Setter Property="Padding" Value="15,2,15,2" />
+					<Setter Property="Margin" Value="0,0,10,0" />
+				</Style>
+			</ItemsControl.ItemContainerStyle>
+		</ItemsControl>
+		<local:GraphView x:Name="GraphView" Margin="0,25,0,0" />
+	</Grid>
 </Window>

@@ -1,8 +1,7 @@
 ﻿using System.Text;
-using NUnit.Framework;
 using TuringMachine.Resources;
 
-namespace TuringMachine.UnitTests.Resources; 
+namespace TuringMachine.UnitTests.Resources;
 
 [TestFixture]
 public class ScriptParserTest {
@@ -14,10 +13,10 @@ public class ScriptParserTest {
 		builder.AppendLine("");
 		builder.AppendLine("first,0");
 		builder.AppendLine("last,1,>");
-		
+
 		return builder.ToString();
 	}
-	
+
 	private static string CreateEmptyScript() {
 		var builder = new StringBuilder();
 		builder.AppendLine("init: start");
@@ -26,14 +25,14 @@ public class ScriptParserTest {
 
 		return builder.ToString();
 	}
-	
+
 	private static string CreateInvalidHeader() {
 		var builder = new StringBuilder();
 		builder.AppendLine("init: first");
 
 		return builder.ToString();
 	}
-	
+
 	private static string CreateInvalidConnection() {
 		var builder = new StringBuilder();
 		builder.AppendLine("init: f");
@@ -45,7 +44,7 @@ public class ScriptParserTest {
 		builder.AppendLine("");
 		builder.AppendLine("f,0");
 		builder.AppendLine("l,1,>");
-		
+
 		return builder.ToString();
 	}
 
@@ -68,7 +67,7 @@ public class ScriptParserTest {
 			parser.Parse();
 		});
 	}
-	
+
 	[Test]
 	public void DotForge() {
 		var parser = ScriptParser.CreateFromString(CreateValidScript());
