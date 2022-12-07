@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TuringMachine.View.Form; 
+namespace TuringMachine.View.Form;
 
 /// <summary>
 ///     Interaction logic for ConnectionForm.xaml

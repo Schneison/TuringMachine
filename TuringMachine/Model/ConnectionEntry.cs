@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Linq;
 using TuringMachine.Data;
 
 namespace TuringMachine.Model;
@@ -24,6 +25,8 @@ public class ConnectionEntry : ObservableObject {
 		get => _mutations;
 		set => SetProperty(ref _mutations, value);
 	}
+
+	public string MutationText => string.Join(" | ", Mutations.Select(x => x.Input + " -> " + x.Output + " (" + x.Direction + ") "));
 
 	public string CurrentState {
 		get => _currentState;

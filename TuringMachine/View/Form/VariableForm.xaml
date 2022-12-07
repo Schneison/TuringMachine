@@ -39,7 +39,7 @@
 				<RowDefinition Height="1*" />
 				<RowDefinition Height="3*" />
 			</Grid.RowDefinitions>
-			<Grid Grid.Row="0">
+			<Grid Grid.Row="0" DataContext="{Binding Entry}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition />
 					<ColumnDefinition />
@@ -52,15 +52,15 @@
 				</Grid.RowDefinitions>
 				<TextBlock Grid.Column="0" Text="Name" Grid.Row="0" Padding="8,0,8,0" VerticalAlignment="Bottom" />
 				<TextBox Grid.Column="0" Style="{StaticResource EntryControl}" AcceptsReturn="True" Grid.Row="1" Margin="8"
-				         Text="{Binding Entry.Name, Mode=TwoWay}" />
+				         Text="{Binding Name, Mode=TwoWay}" />
 				<TextBlock Grid.Column="1" Grid.Row="0" Text="Blacklist: " VerticalAlignment="Center" />
 				<CheckBox Grid.Column="1" Grid.Row="1" Style="{StaticResource EntryControl}" VerticalAlignment="Center"
-				          IsChecked="{Binding Entry.Blacklist, Mode=TwoWay}" />
+				          IsChecked="{Binding Blacklist, Mode=TwoWay}" />
 
 				<TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="Symbols: " Grid.Row="2" Padding="8,0,8,0"
 				           VerticalAlignment="Bottom" />
 				<TextBox Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource EntryControl}" AcceptsReturn="True"
-				         TextWrapping="Wrap" Grid.Row="3" Margin="8" Text="{Binding Entry.Values, Mode=TwoWay}" />
+				         TextWrapping="Wrap" Grid.Row="3" Margin="8" Text="{Binding Values, Mode=TwoWay}" />
 
 			</Grid>
 			<Border Grid.Row="1" BorderBrush="#FFABADB3" BorderThickness="0,0.5,0,0" Background="{x:Null}" />
@@ -69,9 +69,9 @@
 				          BorderThickness="1,1,1,0" ColumnWidth="*" RowHeaderWidth="0" AutoGenerateColumns="False" Margin="0,1,0,0"
 				          SelectedItem="{Binding Entry, Mode=TwoWay}" CanUserAddRows="False">
 					<DataGrid.Columns>
-						<DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-						<DataGridTextColumn Binding="{Binding Values}" Header="Symbols" />
-						<DataGridTextColumn Binding="{Binding Blacklist}" Header="Blacklist" />
+						<DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" />
+						<DataGridTextColumn Binding="{Binding Values, Mode=OneWay}" Header="Symbols" />
+						<DataGridTextColumn Binding="{Binding Blacklist, Mode=OneWay}" Header="Blacklist" />
 					</DataGrid.Columns>
 				</DataGrid>
 			</Grid>

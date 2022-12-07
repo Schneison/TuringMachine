@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TuringMachine.View; 
+namespace TuringMachine.View;
 
 /// <summary>
 ///     Interaction logic for DesignerView.xaml
