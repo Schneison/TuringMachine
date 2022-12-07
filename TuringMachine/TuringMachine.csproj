@@ -10,16 +10,13 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
         <PackageReference Include="DotNetGraph" Version="2.7.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
         <PackageReference Include="QuikGraph.Graphviz" Version="2.5.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\TurinMachine.Core\TurinMachine.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controller\" />
     </ItemGroup>
 
 </Project>

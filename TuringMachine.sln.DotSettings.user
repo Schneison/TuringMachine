@@ -4,11 +4,16 @@
   &lt;Assembly Path="C:\Users\Larson\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.39\lib\net5.0-windows7.0\Microsoft.Xaml.Behaviors.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=TuringMachine_003B_002A_003BTuringMachine_002EResources_002EDotForge_003BToFile/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=14f4025a_002D2f12_002D4737_002Da6b9_002D750337f539ab/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DesignServiceTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::F3D195D3-1F12-4D4B-9FF1-C366053239B5::net6.0-windows7.0::TuringMachine.UnitTests.Service.DesignServiceTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	
 	
 	
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4256c1c6_002D300a_002D441c_002Da973_002Dccefefa07d6c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4256c1c6_002D300a_002D441c_002Da973_002Dccefefa07d6c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8dfa91a5_002Deadf_002D4f71_002D852b_002D4decd0a676df/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Move" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
