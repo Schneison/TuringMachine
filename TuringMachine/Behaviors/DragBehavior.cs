@@ -119,7 +119,7 @@ public class DragBehavior : Behavior<DependencyObject> {
 			_mouseStartPos = GetMousePositionFromMainWindow(eventArgs);
 		}
 
-		// calculate element movement
+		// Calculate element movement
 		var mouseNewPos = GetMousePositionFromMainWindow(eventArgs);
 		var movement = mouseNewPos - _mouseStartPos;
 

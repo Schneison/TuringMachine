@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using TuringMachine.Resources;
+using TuringMachine.View;
 
 namespace TuringMachine;
 
@@ -23,5 +24,10 @@ public partial class App : Application {
 		var scriptGraph = ScriptParser.CreateFromPath("2a.txt").Parse();
 		var forge = new DotForge(scriptGraph);
 		forge.ToFile("myFile.dot");
+	}
+
+	private void Application_Startup(object sender, StartupEventArgs e) {
+		var newWindow = new ArchitectWindow();
+		newWindow.Show();
 	}
 }

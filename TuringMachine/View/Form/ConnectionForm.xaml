@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="TuringMachine.View.Form.ConnectionForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodel="clr-namespace:TuringMachine.ViewModel.Form"
+             xmlns:model="clr-namespace:TuringMachine.Model"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ConnectionFormModel}"
+			 mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="570" d:Background="White">
+	<UserControl.Resources>
+		<model:ConnectionEntry x:Key="Connection" CurrentState="q0" NextState="q1">
+			<model:ConnectionEntry.Mutations>
+				<model:MutationEntry Input="Y" Output="X" Direction="Left" />
+			</model:ConnectionEntry.Mutations>
+		</model:ConnectionEntry>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="2*"/>
+			<RowDefinition Height="14*"/>
+			<RowDefinition Height="2*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="1" DataContext="{Binding Entry}" d:DataContext="{StaticResource Connection}">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="3*"/>
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Start State" />
+				<TextBox Width="80" Text="{Binding CurrentState}" />
+			</StackPanel>
+			<StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="End State" />
+				<TextBox Width="80" Text="{Binding NextState}" />
+			</StackPanel>
+			<ItemsControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Mutations}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.Resources>
+					<DataTemplate DataType="{x:Type model:MutationEntry}">
+						<DataTemplate.Resources>
+						</DataTemplate.Resources>
+						<Border CornerRadius="4" BorderThickness="1" BorderBrush="DarkGray" Padding="13,0" Margin="5, 0,5,5">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="2*"/>
+									<RowDefinition Height="5*"/>
+									<RowDefinition Height="5*"/>
+									<RowDefinition Height="6*"/>
+								</Grid.RowDefinitions>
+								<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Tape (0)" />
+								<StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+									<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Input" />
+									<TextBox Width="100" Text="{Binding Input}" />
+								</StackPanel>
+								<StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+									<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Output" />
+									<TextBox Width="100" Text="{Binding Output}"/>
+								</StackPanel>
+								<StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+									<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Direction" />
+									<ComboBox SelectedValue="{Binding Direction}" Width="80" ItemsSource="{Binding DataContext.DirectionValues, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" HorizontalContentAlignment="Center"/>
+								</StackPanel>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.Resources>
+				<ItemsControl.ItemContainerStyle>
+					<Style>
+						<!--Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" /-->
+					</Style>
+				</ItemsControl.ItemContainerStyle>
+			</ItemsControl>
+			<!-- StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Horizontal">
+				<Border CornerRadius="4" BorderThickness="1" BorderBrush="DarkGray" Padding="13,0" Margin="5, 0,5,5">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="2*"/>
+							<RowDefinition Height="5*"/>
+							<RowDefinition Height="5*"/>
+							<RowDefinition Height="6*"/>
+						</Grid.RowDefinitions>
+						<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Tape (0)" />
+						<StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Input" />
+							<TextBox Width="100" />
+						</StackPanel>
+						<StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Output" />
+							<TextBox Width="100" />
+						</StackPanel>
+						<StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Direction" />
+							<ComboBox Width="80" ItemsSource="{Binding DirectionValues}"  SelectedIndex="0" />
+						</StackPanel>
+					</Grid>
+				</Border>
+			</StackPanel -->
+		</Grid>
+		<TextBlock Grid.Row="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Transitions"
+			             VerticalAlignment="Top" FontSize="14" />
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Button Command="{Binding AddCommand}" Grid.Column="0" Width="80" VerticalAlignment="Center" Content="Add"></Button>
+			<Button Command="{Binding ClearCommand}" Grid.Column="1" Width="80" VerticalAlignment="Center" Content="Clean"></Button>
+			<Button Command="{Binding CancelCommand}" Grid.Column="2" Width="80" VerticalAlignment="Center" Content="Cancel"></Button>
+			<Button Command="{Binding DeleteCommand}" Grid.Column="3" Width="80" VerticalAlignment="Center" Content="Remove"></Button>
+		</Grid>
+	</Grid>
+</UserControl>

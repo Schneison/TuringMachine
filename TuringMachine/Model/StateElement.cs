@@ -4,18 +4,21 @@ using TuringMachine.Behaviors;
 
 namespace TuringMachine.Model;
 
-public class NodeElement : GraphElement, IDraggable {
-	public static readonly int StateRadius = 25;
+/// <summary>
+/// State element model for the graph
+/// </summary>
+public class StateElement : GraphElement, IDraggable {
+	public const int StateRadius = 25;
 	public static readonly Vector2 StateCenter = new(StateRadius);
 	private bool _isFinal;
 	private bool _isStart;
 	private string _name;
 	private Vector2 _position;
 
-	public NodeElement() : this(new Vector2(0, 0), "q0", false, false) {
+	public StateElement() : this(new Vector2(0, 0), "q0", false, false) {
 	}
 
-	public NodeElement(Vector2 position, string name, bool isStart, bool isFinal) {
+	public StateElement(Vector2 position, string name, bool isStart, bool isFinal) {
 		_position = position;
 		_name = name;
 		_isStart = isStart;
@@ -63,7 +66,7 @@ public class NodeElement : GraphElement, IDraggable {
 	}
 
 	public override bool Equals(object? obj) {
-		if (obj is NodeElement node) {
+		if (obj is StateElement node) {
 			return node.Name == Name && node.IsStart == IsStart && node.IsFinal == IsFinal;
 		}
 

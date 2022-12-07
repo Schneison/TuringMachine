@@ -2,12 +2,36 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="View\ArchitectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Form\ConnectionForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\DesignerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\GraphView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Form\VariableForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\ArchitectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Form\ConnectionForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\DesignerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\GraphView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Form\VariableForm.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

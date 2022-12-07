@@ -18,4 +18,8 @@
       <ProjectReference Include="..\TurinMachine.Core\TurinMachine.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controller\" />
+    </ItemGroup>
+
 </Project>

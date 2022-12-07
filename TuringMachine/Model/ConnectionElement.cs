@@ -4,16 +4,19 @@ using System.Windows;
 
 namespace TuringMachine.Model;
 
+/// <summary>
+/// Connection element model for the graph
+/// </summary>
 public class ConnectionElement : GraphElement {
 	private readonly PropertyChangedEventHandler _changedHandler;
 	private bool _alternativeDirection;
-	private NodeElement _end;
-	private NodeElement _start;
+	private StateElement _end;
+	private StateElement _start;
 
-	public ConnectionElement(NodeElement start, NodeElement end) : this(start, end, true) {
+	public ConnectionElement(StateElement start, StateElement end) : this(start, end, true) {
 	}
 
-	public ConnectionElement(NodeElement start, NodeElement end, bool alternativeDirection) {
+	public ConnectionElement(StateElement start, StateElement end, bool alternativeDirection) {
 		_start = start;
 		_end = end;
 		_alternativeDirection = alternativeDirection;
@@ -28,11 +31,11 @@ public class ConnectionElement : GraphElement {
 
 	public bool IsSelfLoop => _start.Equals(_end);
 
-	public Vector2 StartPoint => (_start.Position - _end.Position) / 2 + NodeElement.StateCenter
-	                                                                   + Dir * NodeElement.StateRadius;
+	public Vector2 StartPoint => (_start.Position - _end.Position) / 2 + StateElement.StateCenter
+	                                                                   + Dir * StateElement.StateRadius;
 
-	public Vector2 EndPoint => (_end.Position - _start.Position) / 2 + NodeElement.StateCenter
-	                                                                 + -Dir * NodeElement.StateRadius;
+	public Vector2 EndPoint => (_end.Position - _start.Position) / 2 + StateElement.StateCenter
+	                                                                 + -Dir * StateElement.StateRadius;
 
 	public Vector2 Center => (_start.Position + _end.Position) / 2;
 
@@ -61,12 +64,12 @@ public class ConnectionElement : GraphElement {
 		set => SetProperty(ref _alternativeDirection, value);
 	}
 
-	public NodeElement Start {
+	public StateElement Start {
 		get => _start;
 		set => SetProperty(ref _start, value);
 	}
 
-	public NodeElement End {
+	public StateElement End {
 		get => _end;
 		set => SetProperty(ref _end, value);
 	}
@@ -74,10 +77,10 @@ public class ConnectionElement : GraphElement {
 	public Vector2 TextOverflow() {
 		if (IsSelfLoop) {
 			if (_alternativeDirection) {
-				return new Vector2(0, NodeElement.StateRadius * 3);
+				return new Vector2(0, StateElement.StateRadius * 3);
 			}
 
-			return new Vector2(0, -NodeElement.StateRadius * 2);
+			return new Vector2(0, -StateElement.StateRadius * 2);
 		}
 
 		return Perpendicular * 0;

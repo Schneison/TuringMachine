@@ -12,7 +12,7 @@ public class TransitionArrow : Shape {
 	private const double ArrowHeadWidth = 4;
 	private const double ArrowHeadHeight = 7;
 	private const double ArrowHeadAngle = 90;
-	private const int ArrowSelfRadius = NodeElement.StateRadius - 5;
+	private const int ArrowSelfRadius = StateElement.StateRadius - 5;
 
 	public static readonly DependencyProperty TransitionProperty =
 		DependencyProperty.Register(
@@ -66,9 +66,9 @@ public class TransitionArrow : Shape {
 
 		var lineGroup = new GeometryGroup();
 		var intersections = MathUtils.IntersectCircle(
-			new Vector2(NodeElement.StateRadius, NodeElement.StateRadius),
-			NodeElement.StateRadius,
-			new Vector2(NodeElement.StateRadius, element.AlternativeDirection ? 2 * NodeElement.StateRadius : 0),
+			new Vector2(StateElement.StateRadius, StateElement.StateRadius),
+			StateElement.StateRadius,
+			new Vector2(StateElement.StateRadius, element.AlternativeDirection ? 2 * StateElement.StateRadius : 0),
 			ArrowSelfRadius
 		);
 		var geometry = new StreamGeometry();

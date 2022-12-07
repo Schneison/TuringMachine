@@ -30,7 +30,7 @@
 						<local:TransitionArrow Stroke="Black" Fill="Black" Transition="{Binding }" />
 					</Canvas>
 				</DataTemplate>
-				<DataTemplate DataType="{x:Type model:NodeElement}">
+				<DataTemplate DataType="{x:Type model:StateElement}">
 					<DataTemplate.Resources>
 						<Style TargetType="TextBlock">
 							<Setter Property="FontSize" Value="18" />
