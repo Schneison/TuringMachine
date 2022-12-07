@@ -4,10 +4,6 @@ using TuringMachine.Model;
 
 namespace TuringMachine.Service;
 
-/**
- *	Describes functions used for the design of the turing machine transitions and variables.
- *	This controller is mainly used by the designer view model.
- */
 public class DesignService : IDesignService {
 	public void CompleteSetup(DesignSetupConfig designSetup) {
 		Setup = designSetup;

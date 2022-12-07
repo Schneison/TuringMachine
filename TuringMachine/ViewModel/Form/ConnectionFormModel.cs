@@ -60,7 +60,7 @@ namespace TuringMachine.ViewModel.Form
 	    }
 
 	    public void Cancel() {
-
+		    Entry = null;
 	    }
 
 	    public static IEnumerable<Direction> DirectionValues =>

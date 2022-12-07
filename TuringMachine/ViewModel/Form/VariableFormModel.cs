@@ -55,6 +55,6 @@ public class VariableFormModel : ObservableObject {
 	}
 
 	public void Cancel() {
-
+		Entry = null;
 	}
 }

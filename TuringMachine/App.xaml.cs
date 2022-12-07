@@ -2,7 +2,9 @@
 using System;
 using System.IO;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TuringMachine.Resources;
+using TuringMachine.Service;
 using TuringMachine.View;
 
 namespace TuringMachine;
@@ -37,6 +39,7 @@ public partial class App : Application {
 
 	protected override void OnStartup(StartupEventArgs e) {
 		ServiceProvider = new ServiceCollection()
+			.AddSingleton<IDesignService, DesignService>()
 			.BuildServiceProvider();
 
 		base.OnStartup(e);
