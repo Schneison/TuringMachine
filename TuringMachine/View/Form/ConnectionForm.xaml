@@ -79,31 +79,6 @@
 					</Style>
 				</ItemsControl.ItemContainerStyle>
 			</ItemsControl>
-			<!-- StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Horizontal">
-				<Border CornerRadius="4" BorderThickness="1" BorderBrush="DarkGray" Padding="13,0" Margin="5, 0,5,5">
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="2*"/>
-							<RowDefinition Height="5*"/>
-							<RowDefinition Height="5*"/>
-							<RowDefinition Height="6*"/>
-						</Grid.RowDefinitions>
-						<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Tape (0)" />
-						<StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Input" />
-							<TextBox Width="100" />
-						</StackPanel>
-						<StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Output" />
-							<TextBox Width="100" />
-						</StackPanel>
-						<StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-							<TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Direction" />
-							<ComboBox Width="80" ItemsSource="{Binding DirectionValues}"  SelectedIndex="0" />
-						</StackPanel>
-					</Grid>
-				</Border>
-			</StackPanel -->
 		</Grid>
 		<TextBlock Grid.Row="0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Transitions"
 			             VerticalAlignment="Top" FontSize="14" />

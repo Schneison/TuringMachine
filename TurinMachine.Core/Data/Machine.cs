@@ -17,10 +17,10 @@ public class Machine {
 	/// <summary>
 	///  Creates a new machine for the given design.
 	/// </summary>
-	/// <param name="design">Config of the machine.</param>
-	public Machine(Design design) {
+	/// <param name="designSetup">Config of the machine.</param>
+	public Machine(DesignSetupConfig designSetup) {
 		CurrentState = State.Empty;
-		_tapes = new Tape[design.TapeCount];
+		_tapes = new Tape[designSetup.TapeCount];
 		for (var i = 0; i < _tapes.Length; i++) {
 			_tapes[i] = Tape.CreateBlank();
 		}

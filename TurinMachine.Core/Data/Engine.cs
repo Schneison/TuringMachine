@@ -5,7 +5,7 @@
 public class Engine {
 	private Machine _machine;
 
-	public void Run(Design design) {
-		_machine = new Machine(design);
+	public void Run(DesignSetupConfig designSetup) {
+		_machine = new Machine(designSetup);
 	}
 }

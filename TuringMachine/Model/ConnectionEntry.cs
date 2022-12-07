@@ -46,7 +46,7 @@ public class MutationEntry : ObservableObject {
 	private Direction _direction;
 
 	public MutationEntry() {
-		_input = "Test";
+		_input = "";
 		_output = "";
 		_direction = Direction.None;
 	}
