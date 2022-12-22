@@ -17,9 +17,12 @@
 	<Grid Margin="12,4,12,0">
 		<Grid.Resources>
 			<Style x:Key="EntryControl" TargetType="FrameworkElement">
+				<d:Style.DataContext>
+					<x:Type Type="models:VariableEntry" />
+				</d:Style.DataContext>
 				<Setter Property="IsEnabled" Value="True" />
 				<Style.Triggers>
-					<DataTrigger Binding="{Binding Entry}" Value="{x:Null}">
+					<DataTrigger Binding="{Binding }" Value="{x:Null}">
 						<Setter Property="IsEnabled" Value="False" />
 					</DataTrigger>
 				</Style.Triggers>

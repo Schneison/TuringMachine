@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.Input;
 using TuringMachine.Data;
 using TuringMachine.Model;
 using TuringMachine.ViewModel.Form;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TuringMachine.ViewModel
 {
@@ -17,9 +18,11 @@ namespace TuringMachine.ViewModel
 	// https://badecho.com/index.php/2021/07/26/usable-design-time-data/
 	// https://github.com/microsoft/WPF-Samples/tree/master/Sample%20Applications/DataBindingDemo
 	public class ArchitectViewModel : ObservableObject {
-		public ArchitectViewModel() {
-			Variable = new VariableFormModel(Variables);
-			Connection = new ConnectionFormModel(Connections);
+		public ArchitectViewModel(VariableFormModel variable, ConnectionFormModel connection) {
+			Variable = variable;
+			Variable.Init(Variables);
+			Connection = connection;
+			Connection.Init(Connections);
 		}
 
 		public ObservableCollection<ConnectionEntry> Connections { get; } = new() {

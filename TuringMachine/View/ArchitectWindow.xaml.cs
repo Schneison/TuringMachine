@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
+using TuringMachine.ViewModel;
 
 namespace TuringMachine.View;
 
@@ -8,5 +10,6 @@ namespace TuringMachine.View;
 public partial class ArchitectWindow : Window {
 	public ArchitectWindow() {
 		InitializeComponent();
+		DataContext = App.GetServiceProvider().GetRequiredService<ArchitectViewModel>();
 	}
 }

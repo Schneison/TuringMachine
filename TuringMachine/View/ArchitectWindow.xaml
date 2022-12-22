@@ -8,9 +8,6 @@
         d:DataContext="{d:DesignInstance Type=viewmodel:ArchitectViewModel}"
         mc:Ignorable="d"
         Title="Turing Machine: Architect" Height="450" Width="800">
-	<Window.DataContext>
-		<viewmodel:ArchitectViewModel />
-	</Window.DataContext>
 	<Grid>
 		<Grid>
 			<TabControl>

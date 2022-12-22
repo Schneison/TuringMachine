@@ -9,16 +9,21 @@ namespace TuringMachine.ViewModel.Form;
 public class VariableFormModel : ObservableObject {
 	private VariableEntry? _entry;
 
-	public VariableFormModel(ObservableCollection<VariableEntry> variables) {
+	public VariableFormModel() {
 		AddCommand = new RelayCommand(Add);
 		ClearCommand = new RelayCommand(Clear);
 		DeleteCommand = new RelayCommand(Delete);
 		CancelCommand = new RelayCommand(Cancel);
-		Variables = variables;
-		_entry = Variables.Count > 0 ? Variables[0] : null;
+		Variables = new ObservableCollection<VariableEntry>();
 	}
 
-	public ObservableCollection<VariableEntry> Variables { get; }
+	public void Init(ObservableCollection<VariableEntry> variables) {
+		_entry = variables.Count > 0 ? variables[0] : null;
+		Variables = variables;
+		OnPropertyChanged(nameof(Variables));
+	}
+
+	public ObservableCollection<VariableEntry> Variables { get; private set; }
 
 	public RelayCommand AddCommand { get; }
 

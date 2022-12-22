@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using TuringMachine.Resources;
 using TuringMachine.Service;
 using TuringMachine.View;
+using TuringMachine.ViewModel;
+using TuringMachine.ViewModel.Form;
 
 namespace TuringMachine;
 
@@ -40,7 +42,11 @@ public partial class App : Application {
 	protected override void OnStartup(StartupEventArgs e) {
 		ServiceProvider = new ServiceCollection()
 			.AddSingleton<IDesignService, DesignService>()
+			.AddSingleton<ArchitectViewModel>()
+			.AddSingleton<VariableFormModel>()
+			.AddSingleton<ConnectionFormModel>()
 			.BuildServiceProvider();
+
 
 		base.OnStartup(e);
 	}

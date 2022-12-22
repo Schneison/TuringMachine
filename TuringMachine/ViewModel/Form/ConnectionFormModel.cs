@@ -8,22 +8,31 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TuringMachine.Data;
 using TuringMachine.Model;
+using TuringMachine.Service;
 
 namespace TuringMachine.ViewModel.Form
 {
     public class ConnectionFormModel : ObservableObject {
 	    private ConnectionEntry? _entry;
+	    private readonly IDesignService _service;
 
-	    public ConnectionFormModel(ObservableCollection<ConnectionEntry> connections) {
+
+		public ConnectionFormModel(IDesignService service) {
 		    AddCommand = new RelayCommand(Add);
 		    ClearCommand = new RelayCommand(Clear);
 		    DeleteCommand = new RelayCommand(Delete);
 		    CancelCommand = new RelayCommand(Cancel);
-			Connections = connections;
-			_entry = Connections.Count > 0 ? Connections[0] : null;
+			Connections = new ObservableCollection<ConnectionEntry>();
+			this._service = service;
+		}
+
+		public void Init(ObservableCollection<ConnectionEntry> connections) {
+			_entry = connections.Count > 0 ? connections[0] : null;
+		    Connections = connections;
+		    OnPropertyChanged(nameof(Connections));
 	    }
 
-	    public ObservableCollection<ConnectionEntry> Connections { get; }
+		public ObservableCollection<ConnectionEntry> Connections { get; private set; }
 
 	    public RelayCommand AddCommand { get; }
 
@@ -39,7 +48,7 @@ namespace TuringMachine.ViewModel.Form
 	    }
 
 	    public void Add() {
-		    Entry = new ConnectionEntry();
+		    Entry = _service.CreateConnection();
 		    Connections.Add(Entry);
 	    }
 
