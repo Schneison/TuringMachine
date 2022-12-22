@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Xaml.Behaviors;
 
 namespace TuringMachine.Behaviors;
@@ -145,11 +146,24 @@ public class DragBehavior : Behavior<DependencyObject> {
 		DropHandler.Moved(elementNewPos.X, elementNewPos.Y);
 	}
 
+	private static DependencyObject? GetTopLevelControl(DependencyObject control) {
+		var tmp = control;
+		DependencyObject? parent = null;
+		while ((tmp = VisualTreeHelper.GetParent(tmp)) != null) {
+			parent = tmp;
+		}
+		return parent;
+	}
+
 	/// <summary>
 	///  Retrieves the mouse position relative to the main window.
 	/// </summary>
 	private static Point GetMousePositionFromMainWindow(MouseEventArgs eventArgs) {
-		var mainWindow = Application.Current.MainWindow;
-		return eventArgs.GetPosition(mainWindow);
+		var source = eventArgs.OriginalSource;
+		if (source is not DependencyObject control) {
+			return new Point(0, 0);
+		}
+		var topParent = GetTopLevelControl(control);
+		return topParent is IInputElement window ? eventArgs.GetPosition(window) : new Point(0, 0);
 	}
 }

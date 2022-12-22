@@ -59,6 +59,9 @@
 			</ItemsControl.Resources>
 			<ItemsControl.ItemContainerStyle>
 				<Style>
+					<d:Style.DataContext>
+						<x:Type Type="model:StateElement" />
+					</d:Style.DataContext>
 					<Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" />
 					<Setter Property="Canvas.Top" Value="{Binding Path=PositionY}" />
 				</Style>
