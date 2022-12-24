@@ -66,15 +66,15 @@ public class TransitionArrow : Shape {
 
 		var lineGroup = new GeometryGroup();
 		var intersections = MathUtils.IntersectCircle(
-			new Vector2(StateElement.StateRadius, StateElement.StateRadius),
+			new Vector2(0, 0),
 			StateElement.StateRadius,
-			new Vector2(StateElement.StateRadius, element.AlternativeDirection ? 2 * StateElement.StateRadius : 0),
+			new Vector2(0, element.AlternativeDirection ? 1 * StateElement.StateRadius : -StateElement.StateRadius),
 			ArrowSelfRadius
 		);
 		var geometry = new StreamGeometry();
 		var p1 = intersections[0];
 		var p2 = intersections[1];
-		var theta = p2.AngleInDegree(Vector2.One) + (element.AlternativeDirection ? 45 / 2 : -90);
+		var theta = p2.AngleInDegree(Vector2.Zero) + (element.AlternativeDirection ? -45 : -90 / 3);
 		using (var ctx = geometry.Open()) {
 			ctx.BeginFigure(p1.ToPoint(), false, false);
 			ctx.ArcTo(p2.ToPoint(), new Size(ArrowSelfRadius, ArrowSelfRadius),
@@ -104,6 +104,7 @@ public class TransitionArrow : Shape {
 			EndPoint = p2.ToPoint()
 		};
 		lineGroup.Children.Add(connectorGeometry);
+		lineGroup.Children.Add(new EllipseGeometry((Vector2.Zero).ToPoint(), 5, 5));
 
 		return lineGroup;
 	}

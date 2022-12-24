@@ -31,13 +31,13 @@ public class ConnectionElement : GraphElement {
 
 	public bool IsSelfLoop => _start.Equals(_end);
 
-	public Vector2 StartPoint => (_start.Position - _end.Position) / 2 + StateElement.StateCenter
+	public Vector2 StartPoint => (_start.Position - _end.Position) / 2
 	                                                                   + Dir * StateElement.StateRadius;
 
-	public Vector2 EndPoint => (_end.Position - _start.Position) / 2 + StateElement.StateCenter
+	public Vector2 EndPoint => (_end.Position - _start.Position) / 2
 	                                                                 + -Dir * StateElement.StateRadius;
 
-	public Vector2 Center => (_start.Position + _end.Position) / 2;
+	public Vector2 Center => (_start.Position + _end.Position) / 2 + StateElement.StateCenter;
 
 	public Vector2 Dir => Vector2.Normalize(_end.Position - _start.Position);
 
@@ -77,10 +77,10 @@ public class ConnectionElement : GraphElement {
 	public Vector2 TextOverflow() {
 		if (IsSelfLoop) {
 			if (_alternativeDirection) {
-				return new Vector2(0, StateElement.StateRadius * 3);
+				return new Vector2(0, -StateElement.StateRadius * 1);
 			}
 
-			return new Vector2(0, -StateElement.StateRadius * 2);
+			return new Vector2(0, -StateElement.StateRadius * 1);
 		}
 
 		return Perpendicular * 0;
