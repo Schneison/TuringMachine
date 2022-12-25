@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Numerics;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TuringMachine.Model;
 
@@ -74,13 +77,58 @@ public class ConnectionElement : GraphElement {
 		set => SetProperty(ref _end, value);
 	}
 
+	/// <summary>
+	/// Get the required height and width of the specified text. Uses FortammedText
+	/// </summary>
+	public static Size MeasureTextSize(string text, FontFamily fontFamily, FontStyle fontStyle, FontWeight fontWeight, FontStretch fontStretch, double fontSize) {
+		var ft = new FormattedText(text,
+			CultureInfo.CurrentCulture,
+			FlowDirection.LeftToRight,
+			new Typeface(this.textBlock.FontFamily, this.textBlock.FontStyle, this.textBlock.FontWeight, this.textBlock.FontStretch),
+			fontSize,
+			Brushes.Black, VisualTreeHelper.GetDpi(this.textBlock).PixelsPerDip);
+		return new Size(ft.Width, ft.Height);
+	}
+
+	/// <summary>
+	/// Get the required height and width of the specified text. Uses Glyph's
+	/// </summary>
+	public static Size MeasureText(string text, FontFamily fontFamily, FontStyle fontStyle, FontWeight fontWeight, FontStretch fontStretch, double fontSize) {
+		var typeface = new Typeface(fontFamily, fontStyle, fontWeight, fontStretch);
+
+		if (!typeface.TryGetGlyphTypeface(out var glyphTypeface)) {
+			return MeasureTextSize(text, fontFamily, fontStyle, fontWeight, fontStretch, fontSize);
+		}
+
+		double totalWidth = 0;
+		double height = 0;
+
+		foreach (var textChar in text) {
+			var glyphIndex = glyphTypeface.CharacterToGlyphMap[textChar];
+
+			var width = glyphTypeface.AdvanceWidths[glyphIndex] * fontSize;
+
+			var glyphHeight = glyphTypeface.AdvanceHeights[glyphIndex] * fontSize;
+
+			if (glyphHeight > height) {
+				height = glyphHeight;
+			}
+
+			totalWidth += width;
+		}
+
+		return new Size(totalWidth, height);
+	}
+
+	"a | b | 0"
+
 	public Vector2 TextOverflow() {
 		if (IsSelfLoop) {
 			if (_alternativeDirection) {
-				return new Vector2(0, -StateElement.StateRadius * 1);
+				return new Vector2(0, StateElement.StateRadius * 2);
 			}
 
-			return new Vector2(0, -StateElement.StateRadius * 1);
+			return new Vector2(0, -StateElement.StateRadius * 2);
 		}
 
 		return Perpendicular * 0;

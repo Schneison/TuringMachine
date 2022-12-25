@@ -17,6 +17,9 @@
     <Compile Update="View\Form\VariableForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\TransitionLabel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\ArchitectWindow.xaml">
@@ -32,6 +35,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Form\VariableForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\TransitionLabel.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
