@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Numerics;
 using System.Windows;
@@ -27,6 +29,7 @@ public class ConnectionElement : GraphElement {
 			OnPropertyChanged(nameof(PositionX));
 			OnPropertyChanged(nameof(PositionY));
 			OnPropertyChanged(nameof(TextOffset));
+			OnPropertyChanged(nameof(TextCentered));
 		};
 		_start.PropertyChanged += _changedHandler;
 		_end.PropertyChanged += _changedHandler;
@@ -34,13 +37,35 @@ public class ConnectionElement : GraphElement {
 
 	public bool IsSelfLoop => _start.Equals(_end);
 
-	public Vector2 StartPoint => (_start.Position - _end.Position) / 2
+	public Rectangle Area => CreateArea();
+
+	private Rectangle CreateArea() {
+		if (IsSelfLoop) {
+			return new Rectangle(
+				(int)Math.Floor(_start.Position.X),
+				(int)Math.Floor(_start.Position.Y), 
+				StateElement.StateRadius * 2, 
+				StateElement.StateRadius * 2
+				);
+		}
+		Vector2 start = _start.Position + StateElement.StateCenter + Dir * StateElement.StateCenter;
+		Vector2 end = _end.Position + StateElement.StateCenter - Dir * StateElement.StateCenter;
+		return
+			new Rectangle(
+				(int)Math.Floor(Math.Min(start.X, end.X)),
+				(int)Math.Floor(Math.Min(start.Y, end.Y)),
+				(int)Math.Ceiling(Math.Abs(start.X - end.X)),
+				(int)Math.Ceiling(Math.Abs(start.Y - end.Y))
+				);
+	}
+
+	public Vector2 StartPoint => Center + (_start.Position - _end.Position) / 2
 	                                                                   + Dir * StateElement.StateRadius;
 
-	public Vector2 EndPoint => (_end.Position - _start.Position) / 2
-	                                                                 + -Dir * StateElement.StateRadius;
+	public Vector2 EndPoint => Center + (_end.Position - _start.Position) / 2
+	                                  + -Dir * StateElement.StateRadius;
 
-	public Vector2 Center => (_start.Position + _end.Position) / 2 + StateElement.StateCenter;
+	public Vector2 Center => new Vector2(Area.Width, Area.Height) / 2;
 
 	public Vector2 Dir => Vector2.Normalize(_end.Position - _start.Position);
 
@@ -51,9 +76,11 @@ public class ConnectionElement : GraphElement {
 		}
 	}
 
-	public float PositionX => Center.X;
+	public float PositionX => Area.X;
 
-	public float PositionY => Center.Y;
+	public float PositionY => Area.Y;
+
+	public bool TextCentered => !IsSelfLoop;
 
 	public Thickness TextOffset {
 		get {
@@ -79,9 +106,9 @@ public class ConnectionElement : GraphElement {
 
 	public Vector2 TextOverflow() {
 		return IsSelfLoop switch {
-			true when _alternativeDirection => new Vector2(0, StateElement.StateRadius * 2),
-			true => new Vector2(0, -StateElement.StateRadius * 2),
-			_ => Perpendicular * 0
+			true when _alternativeDirection => new Vector2(0, StateElement.StateRadius * 3),
+			true => new Vector2(0, -StateElement.StateRadius * 3),
+			_ => Perpendicular * 1
 		};
 	}
 

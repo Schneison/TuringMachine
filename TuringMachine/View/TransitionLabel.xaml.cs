@@ -13,7 +13,7 @@ namespace TuringMachine.View {
 		public TransitionLabel() {
 			InitializeComponent();
 			DataContext = this;
-			_textBlock = (TextBlock) FindName("label");
+			_textBlock = (TextBlock) FindName("Label");
 		}
 
 		private Typeface CreateTypeface() {

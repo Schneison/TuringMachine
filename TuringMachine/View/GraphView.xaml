@@ -14,21 +14,42 @@
 		<ItemsControl ItemsSource="{Binding Items}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
-					<Canvas />
-				</ItemsPanelTemplate>
+					<Canvas>
+						<Canvas.RenderTransformOrigin>
+							<Point X="0.5" Y="0.5" />
+						</Canvas.RenderTransformOrigin>
+					</Canvas>
+					</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
 			<ItemsControl.Resources>
 				<DataTemplate DataType="{x:Type model:ConnectionElement}">
 					<DataTemplate.Resources>
 						<Style TargetType="TextBlock">
 							<Setter Property="FontSize" Value="13" />
-
+						</Style>
+						<Style TargetType="ContentPresenter">
+							<d:Style.DataContext>
+								<x:Type Type="model:StateElement" />
+							</d:Style.DataContext>
+							<Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" />
+							<Setter Property="Canvas.Top" Value="{Binding Path=PositionY}" />
 						</Style>
 					</DataTemplate.Resources>
-					<Canvas behaviors:DragBehavior.DropHandler="{Binding}" Panel.ZIndex="0">
-						<TextBlock Text="a | b | 0" Margin="{Binding TextOffset}" />
-						<local:TransitionArrow Stroke="Black" Fill="Black" Transition="{Binding }" />
-					</Canvas>
+					<Grid Panel.ZIndex="0" MinWidth="50">
+						<local:TransitionArrow x:Name="arrow" Stroke="Black" Fill="Black" Transition="{Binding }"/>
+						<!--local:TransitionLabel HorizontalAlignment="Center" VerticalAlignment="Center"/-->
+						<TextBlock Text="a | b | 0" HorizontalAlignment="Center" Margin="{Binding TextOffset}">
+							<TextBlock.Style>
+								<Style TargetType="TextBlock">
+									<Style.Triggers >
+										<DataTrigger Binding="{Binding TextCentered}" Value="True">
+											<Setter Property="VerticalAlignment" Value="Center" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</TextBlock.Style>
+						</TextBlock>
+					</Grid>
 				</DataTemplate>
 				<DataTemplate DataType="{x:Type model:StateElement}">
 					<DataTemplate.Resources>
@@ -37,7 +58,13 @@
 							<Setter Property="HorizontalAlignment" Value="Center" />
 							<Setter Property="VerticalAlignment" Value="Center" />
 						</Style>
-
+						<Style TargetType="ContentPresenter">
+							<d:Style.DataContext>
+								<x:Type Type="model:StateElement" />
+							</d:Style.DataContext>
+							<Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" />
+							<Setter Property="Canvas.Top" Value="{Binding Path=PositionY}" />
+						</Style>
 						<Style x:Key="FinalState" TargetType="Ellipse">
 							<Setter Property="Visibility" Value="Visible" />
 							<Style.Triggers>
@@ -46,10 +73,10 @@
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
+					
 					</DataTemplate.Resources>
 					<Grid behaviors:DragBehavior.DropHandler="{Binding}"
-					      Canvas.Left="{Binding Path=PositionX}"
-					      Canvas.Top="{Binding Path=PositionY}" Panel.ZIndex="1">
+					      Panel.ZIndex="1">
 						<Ellipse Fill="Silver" Width="50" Height="50" />
 						<Ellipse Style="{StaticResource FinalState}" Stroke="DimGray" StrokeThickness="1" Width="44"
 						         Height="44" />
@@ -64,6 +91,7 @@
 					</d:Style.DataContext>
 					<Setter Property="Canvas.Left" Value="{Binding Path=PositionX}" />
 					<Setter Property="Canvas.Top" Value="{Binding Path=PositionY}" />
+					<Style.Triggers></Style.Triggers>
 				</Style>
 			</ItemsControl.ItemContainerStyle>
 		</ItemsControl>

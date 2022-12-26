@@ -34,6 +34,8 @@ namespace TuringMachine.ViewModel
 			new VariableEntry("Y", "#", true)
 		};
 
+
+
 		public VariableFormModel Variable { get; }
 		public ConnectionFormModel Connection { get; }
 
